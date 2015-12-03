@@ -17,6 +17,9 @@ public class TagBuildMojo extends AbstractGithubTagMojo {
     @Parameter(property = "github.tagBuild.skip")
     private boolean skip;
 
+    @Parameter(defaultValue = "CI")
+    protected String tagName = "CI";
+
     @Override
     protected void executeWithConfig() throws MojoExecutionException, MojoFailureException {
         if (skip) {

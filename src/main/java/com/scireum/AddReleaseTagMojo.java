@@ -39,11 +39,15 @@ public class AddReleaseTagMojo extends AbstractGithubTagMojo {
             getLog().info("No git commit hash (github.commitHash) is present. Skipping....");
             return;
         }
+        if (version.endsWith("SNAPSHOT")) {
+            getLog().info("Not going to verify a SNAPSHOT version. Skipping...");
+            return;
+        }
 
         try {
             JSONObject input = new JSONObject();
             input.put("sha", commit);
-            input.put("ref", "refs/tags/" + tagName);
+            input.put("ref", "refs/tags/" + version);
             JSONObject obj = call("POST", "/git/refs", input);
             if (obj.get("state") != Integer.valueOf(201)) {
                 getLog().warn("Cannot create tag: " + obj.get("message"));

@@ -39,9 +39,6 @@ public abstract class AbstractGithubTagMojo extends AbstractMojo {
     @Parameter(defaultValue = "")
     protected String repositoryName;
 
-    @Parameter(defaultValue = "CI")
-    protected String tagName;
-
     protected String getCurrentCommit() {
         return commitHash;
     }
