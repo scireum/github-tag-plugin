@@ -49,10 +49,10 @@ public class AddReleaseTagMojo extends AbstractGithubTagMojo {
             input.put("sha", commit);
             input.put("ref", "refs/tags/" + version);
             JSONObject obj = call("POST", "/git/refs", input);
-            if (obj.get("state") != Integer.valueOf(201)) {
+            if (obj.get("state") != Integer.valueOf(200)) {
                 getLog().warn("Cannot create tag: " + obj.get("message"));
             } else {
-                getLog().info("Successfully create a release tag...");
+                getLog().info("Successfully created a release tag...");
             }
         } catch (Exception e) {
             throw new MojoExecutionException("Cannot create tag: " + e.getMessage(), e);

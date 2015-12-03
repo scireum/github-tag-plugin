@@ -60,12 +60,6 @@ public abstract class AbstractGithubTagMojo extends AbstractMojo {
             return;
         }
 
-        String commit = System.getProperty("GIT_COMMIT");
-        if (Strings.isNullOrEmpty(commit)) {
-            getLog().info("No git commit hash (GIT_COMMIT) is present. Skipping....");
-            return;
-        }
-
         executeWithConfig();
     }
 
