@@ -37,6 +37,7 @@ public class TagBuildMojo extends AbstractGithubTagMojo {
             try {
                 obj = call("POST", "/git/refs/tags/" + tagName, input);
             } catch (Exception e) {
+                getLog().debug(e);
                 getLog().info("Cannot update tag....Trying to create...");
             }
             if (obj == null || !Integer.valueOf(200).equals(obj.get("state"))) {
