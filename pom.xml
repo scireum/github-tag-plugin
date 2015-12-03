@@ -47,8 +47,7 @@
                 <version>1.0-SNAPSHOT</version>
                 <configuration>
                     <repositoryOwner>scireum</repositoryOwner>
-                    <repositoryName>sirius-kernel</repositoryName>
-                    <oauth2Token>82a852d67dc6576b9444fcc42cde461646f64a1f</oauth2Token>
+                    <repositoryName>github-tag-plugin</repositoryName>
                 </configuration>
                 <executions>
                     <execution>
