@@ -58,5 +58,4 @@ public class AddReleaseTagMojo extends AbstractGithubTagMojo {
         }
     }
 
-
 }
