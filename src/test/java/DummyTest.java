@@ -7,7 +7,7 @@
  */
 
 /**
- * Created by aha on 03.12.15.
+ * Dummy class to make git and maven happy.
  */
 public class DummyTest {
 }

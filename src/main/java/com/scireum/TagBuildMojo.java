@@ -1,15 +1,22 @@
+/*
+ * Made with all the love in the world
+ * by scireum in Remshalden, Germany
+ *
+ * Copyright by scireum GmbH
+ * http://www.scireum.de - info@scireum.de
+ */
+
 package com.scireum;
 
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.base.Strings;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- * Created by aha on 03.12.15.
+ * Adds a CI (or custom name) tag to the latest commit being build by the build system.
  */
 @Mojo(name = "tagBuild", defaultPhase = LifecyclePhase.DEPLOY)
 public class TagBuildMojo extends AbstractGithubTagMojo {
@@ -21,7 +28,7 @@ public class TagBuildMojo extends AbstractGithubTagMojo {
     protected String tagName = "CI";
 
     @Override
-    protected void executeWithConfig() throws MojoExecutionException, MojoFailureException {
+    protected void executeWithConfig() throws MojoExecutionException {
         if (skip) {
             getLog().info("Skipping (github.tagBuild.skip is true).");
             return;
@@ -38,21 +45,23 @@ public class TagBuildMojo extends AbstractGithubTagMojo {
         try {
             JSONObject obj = null;
             try {
-                obj = call("POST", "/git/refs/tags/" + tagName, input);
+                obj = call("POST", "/git/refs/tags/" + getEffectiveTagName(tagName), input);
             } catch (Exception e) {
                 getLog().debug(e);
                 getLog().info("Cannot update tag....Trying to create...");
             }
-            if (obj == null || !Integer.valueOf(200).equals(obj.get("state"))) {
-                input.put("ref", "refs/tags/" + tagName);
+            if (obj == null || hasBadStatus(obj)) {
+                input.put("ref", "refs/tags/" + getEffectiveTagName(tagName));
                 obj = call("POST", "/git/refs", input);
-                if (obj.get("state") != Integer.valueOf(201)) {
+                if (hasBadStatus(obj)) {
                     getLog().warn("Cannot create tag: " + obj.get("message"));
                 }
             }
         } catch (Exception e) {
-            throw new MojoExecutionException("Cannot create tag: " + e.getMessage(), e);
+            throw new MojoExecutionException("Cannot create tag ("
+                                             + getEffectiveTagName(tagName)
+                                             + "): "
+                                             + e.getMessage(), e);
         }
     }
-
 }
