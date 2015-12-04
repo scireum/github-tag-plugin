@@ -74,7 +74,7 @@ public class VerifyReleaseTagMojo extends AbstractGithubTagMojo {
         }
         try {
             JSONObject obj = call("GET", "/git/refs/tags/" + getEffectiveTagName(project.getVersion()), null);
-            if (hasBadStatus(obj)) {
+            if (!hasBadStatus(obj)) {
                 if (("refs/tags/" + getEffectiveTagName(project.getVersion())).equals(obj.get("ref"))) {
                     throw new MojoExecutionException("A release tag for "
                                                      + getEffectiveTagName(project.getVersion())

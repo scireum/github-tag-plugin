@@ -11,17 +11,10 @@
     </parent>
 
     <artifactId>github-tag-plugin</artifactId>
-    <version>1.1</version>
+    <version>1.1.2</version>
     <packaging>maven-plugin</packaging>
     <name>Github Tag Mojo</name>
     <description>Permits to add tags via the GitHub API in certain conditions</description>
-    <url>https://github.com/scireum/github-tag-plugin</url>
-
-    <scm>
-        <connection>scm:git:git@github.com:scireum/github-tag-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:scireum/github-tag-plugin.git</developerConnection>
-        <url>git@github.com:scireum/github-tag-plugin.git</url>
-    </scm>
 
     <build>
         <plugins>
