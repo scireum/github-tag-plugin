@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>github-tag-plugin</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>maven-plugin</packaging>
     <name>Github Tag Mojo</name>
     <description>Permits to add tags via the GitHub API in certain conditions</description>
