@@ -39,12 +39,12 @@ public abstract class AbstractGithubTagMojo extends AbstractMojo {
     /**
      * Detects and parses scm urls like https://github.com/OWNER/REPO.git
      */
-    private static final Pattern HTTP_GITHUB_URL = Pattern.compile("https?://github.com/([^/]+)/([^\\.]+)\\.git");
+    private static final Pattern HTTP_GITHUB_URL = Pattern.compile("https?://github.com/([^/]+)/([^\\.]+)\\.git.*");
 
     /**
      * Detects and parses scm urls like git@git.scireum.local:OWNER/REPO.git
      */
-    private static final Pattern SSH_GITHUB_URL = Pattern.compile("git@github\\.com:([^/]+)/([^\\.]+)\\.git");
+    private static final Pattern SSH_GITHUB_URL = Pattern.compile("git@github\\.com:([^/]+)/([^\\.]+)\\.git.*");
     /**
      * Contains the oauth2 token used to access the GitHub API.
      * <p>
