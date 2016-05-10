@@ -7,11 +7,11 @@
     <parent>
         <groupId>com.scireum</groupId>
         <artifactId>sirius-parent</artifactId>
-        <version>2.0.2</version>
+        <version>3.0.3</version>
     </parent>
 
     <artifactId>github-tag-plugin</artifactId>
-    <version>1.1.2</version>
+    <version>1.2</version>
     <packaging>maven-plugin</packaging>
     <name>Github Tag Mojo</name>
     <description>Permits to add tags via the GitHub API in certain conditions</description>
